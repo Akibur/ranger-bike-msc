@@ -19,6 +19,7 @@ import AuthProvider from './Contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './utils/PrivateRoute/PrivateRoute';
 import Checkout from './pages/Checkout/Checkout';
 import OrderConfirmed from './pages/OrderConfirmed/OrderConfirmed';
+import AllBikes from './pages/AllBikes/AllBikes';
 
 
 
@@ -44,18 +45,18 @@ function App() {
           <Route path="/signup">
             <SignUp />
           </Route>
+          <Route path="/allbikes">
+            <AllBikes />
+          </Route>
           <PrivateRoute path="/checkout/:id">
             <Checkout />
           </PrivateRoute>
           <PrivateRoute path="/orderConfirmed">
             <OrderConfirmed />
           </PrivateRoute>
-          {/* <PrivateRoute path="/dashboard">
-            <Dassboard />
-          </PrivateRoute> */}
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <DashBoard />
-          </Route>
+          </PrivateRoute>
           <Route path="*">
             <PageNotFound />
           </Route>
