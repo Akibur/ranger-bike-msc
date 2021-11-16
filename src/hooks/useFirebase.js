@@ -8,7 +8,7 @@ initializeFirebase();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState('');
     const [admin, setAdmin] = useState(false);
     const [token, setToken] = useState('');
@@ -89,7 +89,10 @@ const useFirebase = () => {
     useEffect(() => {
         fetch(`http://localhost:5000/users/${user.email}`)
             .then(res => res.json())
-            .then(data => setAdmin(data.admin));
+            .then(data => {
+                console.log(data);
+                setAdmin(data.admin);
+            });
     }, [user.email]);
 
     const logout = () => {
@@ -114,6 +117,31 @@ const useFirebase = () => {
             .then();
     };
 
+    const makeAdmin = (email) => {
+        setIsLoading(true);
+        const user = { email, role: "admin" };
+        try {
+            fetch('http://localhost:5000/users', {
+                method: "PATCH",
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+                .then(
+                    setIsLoading(false)
+                ).catch((error) => {
+                    console.log(error);
+                    setAuthError(error);
+                });
+
+        } catch (error) {
+            console.log(error);
+            setAuthError(error);
+        }
+
+    };
+
     return {
         user,
         admin,
@@ -123,7 +151,8 @@ const useFirebase = () => {
         registerUser,
         loginUser,
         signInWithGoogle,
-        logout,
+        makeAdmin,
+        logout
     };
 };
 
