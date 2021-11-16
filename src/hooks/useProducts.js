@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const useProducts = () => {
     const [products, setProducts] = useState([]);
     const [displayProducts, setDisplayProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     useEffect(() => {
@@ -15,12 +16,29 @@ const useProducts = () => {
             }).catch((err) => {
                 console.log(err);
             });
-    }, []);
+    }, [isLoading]);
 
+    const deleteProduct = (id) => {
+        setIsLoading(true);
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(
+                (data) => {
+                    data.json();
+                    setIsLoading(false);
+                });
+
+    };
     return [
         products,
         displayProducts,
-        setDisplayProducts
+        setDisplayProducts,
+        isLoading,
+        deleteProduct
     ];
 };
 
