@@ -33,12 +33,31 @@ const useProducts = () => {
                 });
 
     };
+
+    const createProduct = (product) => {
+        console.log(product);
+        setIsLoading(true);
+        fetch(`http://localhost:5000/products/`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(
+                (data) => {
+                    data.json();
+                    setIsLoading(false);
+                });
+
+    };
     return [
         products,
         displayProducts,
         setDisplayProducts,
         isLoading,
-        deleteProduct
+        deleteProduct,
+        createProduct
     ];
 };
 
