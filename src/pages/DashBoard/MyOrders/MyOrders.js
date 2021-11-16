@@ -1,19 +1,47 @@
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 import useOrders from '../../../hooks/useOrders';
 
-export default function AllOrders() {
 
-    const [orders,
+export default function MyOrders() {
+    const { user } = useAuth();
+    const [status, setStatus] = useState("");
+
+    const [Userorders, setUserOrders] = useState([]);
+    const [
+        orders,
         setOrders,
         isLoading,
         updateOrder
     ] = useOrders([]);
+    // const [toggleChange, setToggleChange] = useState(true);
 
-    const [status, setStatus] = useState("");
+    useEffect(() => {
+        const userEmail = { email: user.email };
+
+        fetch('http://localhost:5000/orders/user/', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userEmail)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setUserOrders(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+    }, [isLoading]);
+
+
+
 
     const handleStatusUpdate = (e, id) => {
         e.preventDefault();
         updateOrder(id, status);
+
     };
     const onStatusChange = (e) => {
         e.preventDefault();
@@ -64,7 +92,7 @@ export default function AllOrders() {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
-                                        {orders.map((order) => (
+                                        {Userorders.map((order) => (
                                             <tr key={order._id}>
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <div className="text-sm text-gray-900">{order.user.name}</div>
@@ -90,9 +118,6 @@ export default function AllOrders() {
                                                             <option value="placed">
                                                                 Placed
                                                             </option>
-                                                            <option value="dispached">
-                                                                Dispached
-                                                            </option>
                                                             <option value="cancelled">
                                                                 Cancelled
                                                             </option>
@@ -116,5 +141,6 @@ export default function AllOrders() {
                 </div>
             </div>
         </div >
+
     );
 }

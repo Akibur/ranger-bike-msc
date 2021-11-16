@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const useOrders = () => {
     const [orders, setOrders] = useState([]);
+    const [userOrders, setUserOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -10,12 +11,15 @@ const useOrders = () => {
             .then(data => {
                 console.log(data);
                 setOrders(data);
+
             }).catch((err) => {
                 console.log(err);
             });
     }, [isLoading]);
 
+
     const updateOrder = (id, status) => {
+        console.log(id, status);
         setIsLoading(true);
         const order = { status: status };
         fetch(`http://localhost:5000/orders/${id}`, {
@@ -27,8 +31,8 @@ const useOrders = () => {
         })
             .then(
                 (data) => {
-                    data.json();
                     setIsLoading(false);
+                    data.json();
                 });
 
     };
