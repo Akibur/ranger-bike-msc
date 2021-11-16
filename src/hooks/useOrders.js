@@ -6,7 +6,7 @@ const useOrders = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://sheltered-crag-02874.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -22,7 +22,7 @@ const useOrders = () => {
         console.log(id, status);
         setIsLoading(true);
         const order = { status: status };
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://sheltered-crag-02874.herokuapp.com/orders/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

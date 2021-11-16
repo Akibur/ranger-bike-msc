@@ -87,7 +87,7 @@ const useFirebase = () => {
     }, [auth]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://sheltered-crag-02874.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -107,7 +107,7 @@ const useFirebase = () => {
 
     const saveUser = (email, name, method) => {
         const user = { email, name };
-        fetch('http://localhost:5000/users', {
+        fetch('https://sheltered-crag-02874.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -121,7 +121,7 @@ const useFirebase = () => {
         setIsLoading(true);
         const user = { email, role: "admin" };
         try {
-            fetch('http://localhost:5000/users', {
+            fetch('https://sheltered-crag-02874.herokuapp.com/users', {
                 method: "PATCH",
                 headers: {
                     'content-type': 'application/json'

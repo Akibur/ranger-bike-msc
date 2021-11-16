@@ -19,7 +19,7 @@ export default function MyOrders() {
     useEffect(() => {
         const userEmail = { email: user.email };
 
-        fetch('http://localhost:5000/orders/user/', {
+        fetch('https://sheltered-crag-02874.herokuapp.com/orders/user/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

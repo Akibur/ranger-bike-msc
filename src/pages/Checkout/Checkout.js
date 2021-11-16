@@ -19,7 +19,7 @@ export default function Checkout() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://sheltered-crag-02874.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -48,7 +48,7 @@ export default function Checkout() {
             console.log(order);
             setError('');
             setLoading(true);
-            fetch('http://localhost:5000/orders', {
+            fetch('https://sheltered-crag-02874.herokuapp.com/orders', {
                 method: 'POST',
                 cache: 'no-cache',
                 headers: {

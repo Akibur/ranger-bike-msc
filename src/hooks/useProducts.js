@@ -7,7 +7,7 @@ const useProducts = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://sheltered-crag-02874.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -20,7 +20,7 @@ const useProducts = () => {
 
     const deleteProduct = (id) => {
         setIsLoading(true);
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://sheltered-crag-02874.herokuapp.com/products/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -37,7 +37,7 @@ const useProducts = () => {
     const createProduct = (product) => {
         console.log(product);
         setIsLoading(true);
-        fetch(`http://localhost:5000/products/`, {
+        fetch(`https://sheltered-crag-02874.herokuapp.com/products/`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
