@@ -1,23 +1,40 @@
 import React from 'react';
-import useProducts from '../../hooks/useProducts';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Spinner from '../UI/Spinner/Spinner';
 import ProductCard from './ProductCard/ProductCard';
+import { getProducts } from '../../store/products-slice';
+
 
 
 export default function Products() {
-    const [products, displayProducts, setDisplayProducts] = useProducts();
+    // const [products, displayProducts, setDisplayProducts] = useProducts();
+    const dispatch = useDispatch();
 
-    console.log("in products", products);
+    const { products, loading, error } = useSelector((state) => state.products);
+
+    console.log(error);
+
+    useEffect(() => {
+        dispatch(getProducts());
+    }, [dispatch]);
+
     return (
         <div>
             <div className="flex flex-wrap items-center justify-center">
-                {products?.length > 0 ?
+
+                {!loading ?
                     products.slice(0, 6).map(product =>
                         <ProductCard
                             key={product._id}
                             product={product}
                         >
                         </ProductCard>
-                    ) : <h1>No Bikes Found </h1>
+                    ) : <Spinner></Spinner>
+                }
+                {
+                    error?.isError && <h1>No bikes found Something went wrong</h1>
+
                 }
             </div>
 
