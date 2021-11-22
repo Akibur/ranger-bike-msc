@@ -9,11 +9,11 @@ export default function OrderConfirmed() {
                     <span className="block">
                         Your Order Has been Placed
                     </span>
-                    <h4 className="md:text-2xl font-extrabold text-black dark:text-white sm:text-xl" >
+                    <h3 className="md:text-2xl font-extrabold text-black dark:text-white sm:text-xl" >
                         <span className="block text-red-700">
                             We will get back to you soon.
                         </span>
-                    </h4>
+                    </h3>
 
                 </h2>
                 <div className="lg:mt-0 lg:flex-shrink-0">
