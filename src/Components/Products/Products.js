@@ -5,8 +5,6 @@ import Spinner from '../UI/Spinner/Spinner';
 import ProductCard from './ProductCard/ProductCard';
 import { getProducts } from '../../store/products-slice';
 
-
-
 export default function Products() {
     // const [products, displayProducts, setDisplayProducts] = useProducts();
     const dispatch = useDispatch();

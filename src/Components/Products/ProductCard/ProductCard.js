@@ -15,7 +15,7 @@ export default function ProductCard(props) {
     return (
         <div>
 
-            <div className="w-80 flex justify-center items-center">
+            <div className="w-80 flex  justify-center items-center transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" >
                 <div className="w-full p-4">
                     <div className="card flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl">
                         <div className="prod-img">
