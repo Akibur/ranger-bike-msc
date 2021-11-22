@@ -20,10 +20,13 @@ import PrivateRoute from './utils/PrivateRoute/PrivateRoute';
 import Checkout from './pages/Checkout/Checkout';
 import OrderConfirmed from './pages/OrderConfirmed/OrderConfirmed';
 import AllBikes from './pages/AllBikes/AllBikes';
+import Contact from './pages/Contact/Contact';
 
 
 
 function App() {
+
+
 
   return (
     <AuthProvider>
@@ -38,6 +41,9 @@ function App() {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
           </Route>
           <Route path="/signin">
             <SignIn />
