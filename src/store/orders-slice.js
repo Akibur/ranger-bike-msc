@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-
 
 const initialState = {
     orders: [],
@@ -42,13 +40,12 @@ export const getUserOrders = createAsyncThunk(
     'orders/getUserOrders',
     async (userEmail, thunkAPI) => {
         try {
-            const res = await fetch('https://sheltered-crag-02874.herokuapp.com/orders/user/', {
-                method: 'POST',
+            const res = await fetch(`https://sheltered-crag-02874.herokuapp.com/orders/user/${userEmail}`, {
                 headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(userEmail)
-            }).then(
+                    "authorization": `Bearer ${localStorage.getItem('idToken')}`
+                }
+            }
+            ).then(
                 (data) => data.json()
             );
             return res;
@@ -68,6 +65,7 @@ export const createOrder = createAsyncThunk(
             const res = await fetch(`https://sheltered-crag-02874.herokuapp.com/orders/`, {
                 method: 'POST',
                 headers: {
+                    "authorization": `Bearer ${localStorage.getItem('idToken')}`,
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(order)
@@ -95,12 +93,11 @@ export const updateOrder = createAsyncThunk(
             const res = await fetch(`https://sheltered-crag-02874.herokuapp.com/orders/${id}`, {
                 method: 'PATCH',
                 headers: {
+                    "authorization": `Bearer ${localStorage.getItem('idToken')}`,
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(order)
             }).then(data => data.json());
-            console.log(res);
-
             if (email) thunkAPI.dispatch(getUserOrders({ email: email }));
             else thunkAPI.dispatch(getAllOrders());
 
