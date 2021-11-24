@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 const initialState = {
     orders: [],
     order: {},
+    userOrders: [],
     loading: false,
     statusUpdateLoading: false,
     orderError: {
@@ -37,7 +38,28 @@ export const getAllOrders = createAsyncThunk(
         }
 
     });
+export const getUserOrders = createAsyncThunk(
+    'orders/getUserOrders',
+    async (userEmail, thunkAPI) => {
+        try {
+            const res = await fetch('https://sheltered-crag-02874.herokuapp.com/orders/user/', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(userEmail)
+            }).then(
+                (data) => data.json()
+            );
+            return res;
+        } catch (err) {
+            if (!err.response) {
+                throw err;
+            }
+            return thunkAPI.rejectWithValue(err.response.data);
+        }
 
+    });
 export const createOrder = createAsyncThunk(
     'orders/createOrder',
     async (order, thunkAPI) => {
@@ -64,11 +86,10 @@ export const createOrder = createAsyncThunk(
 
 
     });
-
 export const updateOrder = createAsyncThunk(
     'orders/updateOrder',
     async (update, thunkAPI) => {
-        const { id, status } = update;
+        const { email, id, status } = update;
         try {
             const order = { status: status };
             const res = await fetch(`https://sheltered-crag-02874.herokuapp.com/orders/${id}`, {
@@ -79,7 +100,10 @@ export const updateOrder = createAsyncThunk(
                 body: JSON.stringify(order)
             }).then(data => data.json());
             console.log(res);
-            thunkAPI.dispatch(getAllOrders());
+
+            if (email) thunkAPI.dispatch(getUserOrders({ email: email }));
+            else thunkAPI.dispatch(getAllOrders());
+
             return res;
         } catch (err) {
             console.log("try catch err", err);
@@ -88,8 +112,6 @@ export const updateOrder = createAsyncThunk(
             }
             return thunkAPI.rejectWithValue(err.response.data);
         }
-
-
     });
 
 const ordersSlice = createSlice({
@@ -119,6 +141,20 @@ const ordersSlice = createSlice({
             state.orderError.message = action;
         },
 
+        //GetUserOrders
+        [getUserOrders.pending]: (state) => {
+            if (state.userOrders.length < 1) state.loading = true;
+        },
+        [getUserOrders.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.userOrders = action.payload;
+        },
+        [getUserOrders.rejected]: (state, action) => {
+            state.loading = false;
+            state.orderError.isError = true;
+            state.orderError.message = action;
+        },
+
         //CreateOrder
         [createOrder.pending]: (state) => {
             state.loading = true;
@@ -140,8 +176,6 @@ const ordersSlice = createSlice({
         [updateOrder.fulfilled]: (state, action) => {
             state.statusUpdateLoading = false;
             console.log(action.payload);
-
-            // state.orders = action.payload
         },
         [updateOrder.rejected]: (state, action) => {
             state.statusUpdateLoading = false;
