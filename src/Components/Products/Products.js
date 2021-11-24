@@ -6,12 +6,9 @@ import ProductCard from './ProductCard/ProductCard';
 import { getProducts } from '../../store/products-slice';
 
 export default function Products() {
-    // const [products, displayProducts, setDisplayProducts] = useProducts();
     const dispatch = useDispatch();
-
-    const { products, loading, error } = useSelector((state) => state.products);
-
-    console.log(error);
+    const { products, loading, productError } = useSelector((state) => state.products);
+    console.log(productError);
 
     useEffect(() => {
         dispatch(getProducts());
@@ -31,8 +28,7 @@ export default function Products() {
                     ) : <Spinner></Spinner>
                 }
                 {
-                    error?.isError && <h1>No bikes found Something went wrong</h1>
-
+                    productError?.isError && <h1>No bikes found Something went wrong</h1>
                 }
             </div>
 

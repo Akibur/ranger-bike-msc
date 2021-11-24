@@ -20,11 +20,9 @@ export default function MakeAdmin() {
         const value = e.target.value;
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
-        console.log(newLoginData);
         setLoginData(newLoginData);
     };
     const handleAdminChange = e => {
-        console.log(loginData);
         makeAdmin(loginData.email);
         e.preventDefault();
     };

@@ -10,11 +10,9 @@ const useProducts = () => {
         fetch('https://sheltered-crag-02874.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setProducts(data);
                 setDisplayProducts(data);
             }).catch((err) => {
-                console.log(err);
             });
     }, [isLoading]);
 
@@ -23,6 +21,7 @@ const useProducts = () => {
         fetch(`https://sheltered-crag-02874.herokuapp.com/products/${id}`, {
             method: 'DELETE',
             headers: {
+                'authorization': `Bearer ${localStorage.getItem('idToken')}`,
                 'content-type': 'application/json'
             },
         })
@@ -35,7 +34,6 @@ const useProducts = () => {
     };
 
     const createProduct = (product) => {
-        console.log(product);
         setIsLoading(true);
         fetch(`https://sheltered-crag-02874.herokuapp.com/products/`, {
             method: 'POST',

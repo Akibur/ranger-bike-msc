@@ -39,6 +39,7 @@ export const createProduct = createAsyncThunk(
             const res = await fetch(`https://sheltered-crag-02874.herokuapp.com/products/`, {
                 method: 'POST',
                 headers: {
+                    "authorization": `Bearer ${localStorage.getItem('idToken')}`,
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(product)

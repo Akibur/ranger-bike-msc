@@ -9,7 +9,6 @@ import { NavLink } from 'react-router-dom';
 
 
 export default function MobileNav({ user }) {
-    console.log(user);
 
 
     const Dashboard = (

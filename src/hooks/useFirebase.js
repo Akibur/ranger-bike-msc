@@ -22,7 +22,7 @@ const useFirebase = () => {
             .then((userCredential) => {
                 setAuthError('');
                 const newUser = { email, displayName: name };
-                setUser(newUser);
+                //setUser(newUser);
                 // save user to the database
                 saveUser(email, name, 'POST');
                 // send name to firebase after creation
@@ -35,7 +35,6 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 setAuthError(error.message);
-                console.log(error);
             })
             .finally(() => setIsLoading(false));
     };
@@ -71,11 +70,11 @@ const useFirebase = () => {
     // observer user state
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
-            console.log(user);
             if (user) {
                 setUser(user);
                 getIdToken(user)
                     .then(idToken => {
+                        localStorage.setItem('idToken', idToken);
                         setToken(idToken);
                     });
             } else {
@@ -90,7 +89,6 @@ const useFirebase = () => {
         fetch(`https://sheltered-crag-02874.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setAdmin(data.admin);
             });
     }, [user.email]);
@@ -113,8 +111,7 @@ const useFirebase = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)
-        })
-            .then();
+        }).then();
     };
 
     const makeAdmin = (email) => {
@@ -124,6 +121,7 @@ const useFirebase = () => {
             fetch('https://sheltered-crag-02874.herokuapp.com/users', {
                 method: "PATCH",
                 headers: {
+                    "authorization": `Bearer ${localStorage.getItem('idToken')}`,
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(user)
@@ -131,12 +129,10 @@ const useFirebase = () => {
                 .then(
                     setIsLoading(false)
                 ).catch((error) => {
-                    console.log(error);
                     setAuthError(error);
                 });
 
         } catch (error) {
-            console.log(error);
             setAuthError(error);
         }
 

@@ -14,7 +14,6 @@ export default function SignIn() {
         const value = e.target.value;
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
-        console.log(newLoginData);
         setLoginData(newLoginData);
     };
     const handleLoginSubmit = e => {

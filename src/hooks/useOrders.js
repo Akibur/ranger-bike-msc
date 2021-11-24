@@ -9,17 +9,14 @@ const useOrders = () => {
         fetch('https://sheltered-crag-02874.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setOrders(data);
 
             }).catch((err) => {
-                console.log(err);
             });
     }, [isLoading]);
 
 
     const updateOrder = (id, status) => {
-        console.log(id, status);
         setIsLoading(true);
         const order = { status: status };
         fetch(`https://sheltered-crag-02874.herokuapp.com/orders/${id}`, {

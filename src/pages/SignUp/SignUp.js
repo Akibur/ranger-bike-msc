@@ -13,7 +13,6 @@ export default function SignUp() {
         const value = e.target.value;
         const newSignupData = { ...signupData };
         newSignupData[field] = value;
-        console.log(newSignupData);
         setSignupData(newSignupData);
     };
 
@@ -23,7 +22,6 @@ export default function SignUp() {
             e.preventDefault();
             return;
         }
-        console.log(signupData);
         registerUser(signupData.email, signupData.password, signupData.name, history);
         e.preventDefault();
     };

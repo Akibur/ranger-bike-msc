@@ -5,11 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
 import { createOrder } from '../../store/orders-slice';
-
-
 import TemporaryAlert from "../../Components/UI/TemporaryAlert/TemporaryAlert";
-
-
 
 export default function Checkout() {
     const { id } = useParams();

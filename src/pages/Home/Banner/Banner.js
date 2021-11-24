@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 export default function Banner() {
     return (
@@ -16,9 +18,11 @@ export default function Banner() {
                     Rangers is noted for a style of customization that gave rise to the chopper motorcycle style. The company traditionally marketed heavyweight, air-cooled cruiser motorcycles with engine displacements greater than 700 cc, but it has broadened its offerings                 </p>
                 <div className="lg:mt-0 lg:flex-shrink-0">
                     <div className="mt-12 inline-flex rounded-md shadow">
-                        <button type="button" className="py-4 px-6  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                            View Bikes
-                        </button>
+                        <NavLink to="allbikes">
+                            <button type="button" className="py-4 px-6  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                View Bikes
+                            </button>
+                        </NavLink>
                     </div>
                 </div>
             </div>
