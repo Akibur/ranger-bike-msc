@@ -39,8 +39,9 @@ export const getAllOrders = createAsyncThunk(
 export const getUserOrders = createAsyncThunk(
     'orders/getUserOrders',
     async (userEmail, thunkAPI) => {
+        console.log(userEmail);
         try {
-            const res = await fetch(`https://sheltered-crag-02874.herokuapp.com/orders/user/${userEmail}`, {
+            const res = await fetch(`https://sheltered-crag-02874.herokuapp.com/orders/user/${userEmail.email}`, {
                 headers: {
                     "authorization": `Bearer ${localStorage.getItem('idToken')}`
                 }

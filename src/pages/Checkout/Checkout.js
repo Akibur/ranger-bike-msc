@@ -13,9 +13,7 @@ export default function Checkout() {
     const [error, setError] = useState("");
     const [productLoading, setProductLoading] = useState(false);
 
-    const phonedRef = useRef();
-    const nameRef = useRef();
-    const creditCardRef = useRef();
+
     const dispatch = useDispatch();
     const { loading, orderError, alert } = useSelector((state) => state.orders);
 
@@ -136,14 +134,16 @@ export default function Checkout() {
                 }
 
                 {error ?
-                    <div className="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
-                        <p className="font-bold">
-                            Error
-                        </p>
-                        <p>
-                            {error}
-                        </p>
-                    </div> : null}
+                    <TemporaryAlert>
+                        <div className="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+                            <p className="font-bold">
+                                Error
+                            </p>
+                            <p>
+                                {error}
+                            </p>
+                        </div>
+                    </TemporaryAlert> : null}
 
                 <div className="">
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -196,6 +196,6 @@ export default function Checkout() {
                     </form>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
