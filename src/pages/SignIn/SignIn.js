@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useForm } from "react-hook-form";
+import TemporaryAlert from '../../Components/UI/TemporaryAlert/TemporaryAlert';
 
 
 export default function SignIn() {
@@ -30,14 +31,17 @@ export default function SignIn() {
                 </div>
 
                 {authError ?
-                    <div className="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
-                        <p className="font-bold">
-                            Error
-                        </p>
-                        <p>
-                            {authError}
-                        </p>
-                    </div> : null}
+                    <TemporaryAlert delay={5000}>
+                        <div className="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+                            <p className="font-bold">
+                                Error
+                            </p>
+                            <p>
+                                {authError}
+                            </p>
+                        </div>
+                    </TemporaryAlert>
+                    : null}
 
                 {/* google auth */}
                 <div className="flex gap-4 item-center">
@@ -53,9 +57,6 @@ export default function SignIn() {
 
 
                     </button>
-
-
-
 
                     <button onClick={handleGoogleSignIn} type="button" className="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         <svg width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
