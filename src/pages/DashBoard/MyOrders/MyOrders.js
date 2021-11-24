@@ -75,7 +75,7 @@ export default function MyOrders() {
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white divide-y divide-gray-200">
-                                            {userOrders.map((order) => (
+                                            {userOrders.length > 1 ? (userOrders.map((order) => (
                                                 <tr key={order._id}>
                                                     <td className="px-6 py-4 whitespace-nowrap">
                                                         <div className="text-sm text-gray-900">{order.user.name}</div>
@@ -119,7 +119,7 @@ export default function MyOrders() {
                                                         </form>
                                                     </td>
                                                 </tr>
-                                            ))}
+                                            ))) : <h1 className="w-full text-center">No Orders Made</h1>}
                                         </tbody>
                                     </table>
                                     )}
