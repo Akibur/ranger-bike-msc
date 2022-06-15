@@ -8,6 +8,10 @@ This is the client side of the Rangers Bikes site where users can view and order
 
 - Live site- https://rangers-bikes.firebaseapp.com/
 
+# Registration Page
+
+![alt text](https://i.ibb.co/LR2Jhdf/Untitled.png)
+
 # Client Side Tech
 
 The client side made using React and tailwind CSS
