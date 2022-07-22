@@ -31,15 +31,12 @@ The client side made using React and tailwind CSS
 
 ## Admin
 
-- Admin Can Login
 - Admin Can Register
 - Admin Can Manage Products
 - Admin Can Add Products
 - Admin Can make a user an admin
 - Admin Can manage Orders
 - Admin Can view profile
-
-
 
 You can use the [editor on GitHub](https://github.com/Akibur/ranger-bike-msc/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
@@ -53,7 +50,9 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 Syntax highlighted code block
 
 # Header 1
+
 ## Header 2
+
 ### Header 3
 
 - Bulleted
