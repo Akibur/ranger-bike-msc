@@ -1,16 +1,40 @@
 ## Documentation for Bike Ecommerce site
 
-# Rangers Bikes
+# Overview
 
-This is the client side of the Rangers Bikes site where users can view and order custom bikes.
+The bike eCommerce store is an eCommerce platform merchants can use to display and sell their bikes online. They will be able to upload information about their bikes and customers will be able to buy the bikes using the platform.
+The E-commerce store will have two user classes
 
-- Admin Login
-  email - admin@admin.com
-  user - 123456
+- Customers
+- Admin
 
-- Live site- https://rangers-bikes.firebaseapp.com/
+The customer will be able to browse through the different bikes, login/register and order a bike that he likes
+The admin will be able to login, manage the different product information, view and manage the orders and create other admins accounts.
+
+The system will allow users to quickly and easily view the technical specifications of each bike and make a purchase from the comforts of their homes. They don’t need to go to a showroom to view and buy the bikes. This saves the customer time and at the same time, the platform’s owner can serve their customers 24/7.
+The Ecommerce platform will have a backend API and a React-based frontend which will consume the API and provide the functionality to the software. A no SQL database called mongoDB will be used as the database.
+
+# All Bikes Page
+
+This page allows the user to view all the bikes available in the store
+
+![alt text](https://i.ibb.co/4VNBfqh/all-bikes.png)
+
+# Login Page
+
+In the login page the customer will be able to login with hi email/ password or login using one click social accounts
+
+![alt text](https://i.ibb.co/sKvssqg/Login-Page.png)
+
+# Home Page
+
+In the home page the customer will view info about the company and view some of the best bikes displayed in the home page.
+
+![alt text](https://i.ibb.co/fDBnXth/home-page.png)
 
 # Registration Page
+
+The customer has to register before he can order a bike. THe customer will register using his name email and password
 
 ![alt text](https://i.ibb.co/LR2Jhdf/Untitled.png)
 
