@@ -22,7 +22,18 @@ This page allows the user to view all the bikes available in the store
 
 # Login Page
 
-In the login page the customer will be able to login with hi email/ password or login using one click social accounts
+In the login page the customer will be able to login with hi email/ password or login using one click social accounts. The code for the react auth component is given below
+
+```javascript
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/AuthProvider/AuthProvider";
+
+const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+export default useAuth;
+```
 
 ![alt text](https://i.ibb.co/sKvssqg/Login-Page.png)
 
