@@ -32,6 +32,11 @@ In the home page the customer will view info about the company and view some of 
 
 The customer has to register before he can order a bike. THe customer will register using his name email and password
 
+| React Function | Description                  |
+| -------------- | ---------------------------- |
+| onSubmit(data) | Submits the data of the form |
+| useForm()      | third party useForm hook     |
+
 ```javascript
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
